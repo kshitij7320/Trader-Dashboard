@@ -1,0 +1,177 @@
+$bg-primary: #0f172a;
+$bg-card: #1e293b;
+$border-color: #334155;
+$text-primary: #f8fafc;
+$text-muted: #94a3b8;
+$green: #10b981;
+$red: #ef4444;
+$yellow: #f59e0b;
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: $bg-primary;
+  color: $text-primary;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h1 { font-size: 1.75rem; margin: 0; font-weight: 700; }
+    .subtitle { color: $text-muted; margin: 0.25rem 0 0 0; font-size: 0.9rem; }
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+
+  &--safe { background: rgba($green, 0.15); color: $green; border: 1px solid rgba($green, 0.3); }
+  &--approaching-limit { background: rgba($yellow, 0.15); color: $yellow; border: 1px solid rgba($yellow, 0.3); }
+  &--at-risk { background: rgba($red, 0.15); color: $red; border: 1px solid rgba($red, 0.3); }
+}
+
+.card {
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  padding: 1.5rem;
+  
+  h2 { font-size: 1.1rem; margin: 0 0 1rem 0; }
+  &__desc { font-size: 0.8rem; color: $text-muted; margin-top: -0.5rem; margin-bottom: 1rem; }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  .card__label { display: block; font-size: 0.85rem; color: $text-muted; }
+  .card__value { font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem; display: block; }
+  .card__subtext { font-size: 0.75rem; color: $text-muted; margin-top: 0.25rem; display: block; }
+}
+
+.risk-indicator {
+  margin-bottom: 1.5rem;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.risk-box {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: $text-muted;
+    margin-bottom: 0.5rem;
+  }
+
+  &__remaining {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: $text-muted;
+    strong { color: $text-primary; }
+  }
+}
+
+.progress-bar {
+  background: $border-color;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    &--drawdown { background: $yellow; }
+    &--loss { background: $red; }
+  }
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trade-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  background: rgba($border-color, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+
+  .stat-item {
+    span { color: $text-muted; font-size: 0.8rem; display: block; }
+    strong { display: flex; align-items: center; gap: 0.25rem; font-size: 1rem; margin-top: 0.25rem; }
+  }
+}
+
+.trades-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td { text-align: left; padding: 0.75rem 0; border-bottom: 1px solid $border-color; }
+  th { color: $text-muted; font-size: 0.85rem; font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+}
+
+.side-tag {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  &.long { background: rgba($green, 0.2); color: $green; }
+  &.short { background: rgba($red, 0.2); color: $red; }
+}
+
+.asset-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .asset-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child { border-bottom: none; }
+    &__symbol { font-weight: 700; display: block; }
+    &__count { font-size: 0.75rem; color: $text-muted; }
+    &__pnl { font-weight: 600; }
+  }
+}
+
+.text-green { color: $green; }
+.text-red { color: $red; }
